@@ -8,27 +8,39 @@
 </head>
 <body>
     <h1>Individuellt projektarbete - Skolansökningar</h1>
+    <div id="filter">
+        Filtrera ut elever per utbildning:
+        <div>
+          <input type="radio" id="choice1" name="student" value="Frontend" />
+          <label for="choice1">Frontend</label>
+        </div>
+        <div>
+          <input type="radio" id="choice2" name="student" value="Backend" />
+          <label for="choice2">Backend</label>
+        </div>
+        <div>
+          <input type="radio" id="choice3" name="student" value=".NET" />
+          <label for="choice3">.NET</label>
+        </div>
+      </div>
+      <button id="filterEducation">Filtrera</button>
+      <br> <br>
+
+      <!-- Box med sorteringsknappar som bara visas efter man har filtrerat eleverna-->
+      <div id="sortButtons">
+        <button id="sortAge">Ålder</button>
+        <button id="sortFirstName">Förnamn</button>
+        <button id="sortLastName">Efternamn</button>
+      </div>
+    <h4 id="filterHeadLine"></h4>
+
+    <!-- Box för lista med alla elever -->
+    <div id="studentList"></div>
+
+    <!-- Box för lista med filtrerade elever -->
+    <div id="filterStudentList"></div>
 
     
-    <div id="studentList">
-    </div>
-
-    <div id="filter">
-        Filter:
-        <div>
-            <input type="radio" id="choice1" name="student" value="Frontend" />
-            <label for="choice1">Frontend</label>
-        </div>
-        <div>
-            <input type="radio" id="choice2" name="student" value="Backend" />
-            <label for="choice2">Backend</label>
-        </div>
-        <div>
-            <input type="radio" id="choice3" name="student" value="Net" />
-            <label for="choice3">.NET</label>
-        </div> 
-    </div>
-    <button id="filterEducation">Filtrera</button>
     <script src="main.js"></script>
 </body>
 </html>
