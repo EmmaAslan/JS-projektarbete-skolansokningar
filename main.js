@@ -88,7 +88,6 @@ async function fetchInfo() {
       });
     };
     
-
     //Skapar p-taggar för varje utfiltrerad elev
     filter.forEach((student) => {
         createStudent(student) //Funktion som skapar elever och tillhörande knappfunktioner för att visa matchande skolor 
@@ -111,7 +110,6 @@ async function fetchInfo() {
 
     //Knapp för att sortera filtrerad lista i bokstavsordning baserat på förnamn
     sortFirstName.addEventListener("click", () => {
-      // console.log("Sortera i bokstavsordning baserat på förnamn");
       filter.sort((a, b) => {
         if (a.firstName < b.firstName) {
           return -1;
@@ -133,7 +131,6 @@ async function fetchInfo() {
 
     //Knapp för att sortera filtrerad lista i bokstavsordning baserat på efternamn
     sortLastName.addEventListener("click", () => {
-      //console.log("Sortera i bokstavsordning baserat på efternamn");
       filter.sort((a, b) => {
         if (a.lastName < b.lastName) {
           return -1;
@@ -154,8 +151,4 @@ async function fetchInfo() {
     });
   });
 }
-
 fetchInfo();
-
-
-
