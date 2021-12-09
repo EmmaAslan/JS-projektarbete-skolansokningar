@@ -11,7 +11,6 @@ let sortLastName = document.querySelector("#sortLastName");
 let filteredProgramme = "";
 
 sortButtons.hidden = true; //Knappar för att sortera ut elever döljs
-
 noFilterStudentList.hidden = false; //Lista med ofiltrerade elever visas
 
 let getData = async (URL) => {
@@ -49,33 +48,35 @@ async function fetchInfo() {
       (student) => student.programme === filteredProgramme
     );
 
-    //Skapar p-taggar för varje utfiltrerad elev
-    filter.forEach((student) => {
-      //console.log(student);
+    //En funktion som skapar elever och tillhörande knappar som visar matchande skolor
+    function createStudent(elev) {
+      //Skapar element för varje elev
       let eachStudent = document.createElement("p");
-      eachStudent.textContent = `${student.firstName} ${student.lastName}, ${student.age}`;
+      eachStudent.textContent = `${elev.firstName} ${elev.lastName}, ${elev.age}`;
       filteredStudentList.appendChild(eachStudent);
 
-      //Lägger till en knapp per elev i listan
+      //Skapar element för skolor som matchar
       let relatedSchools = document.createElement("button");
       relatedSchools.textContent = "Visa skolor";
       eachStudent.appendChild(relatedSchools);
 
+      //Skapar ett element där skolorna skrivs ut för att kunna tömma denna så inte uppgifterna skrivs ut mer än en gång
       let tomDiv = document.createElement("div");
       tomDiv.innerHTML = "";
       eachStudent.appendChild(tomDiv);
 
+      //Skapar en funktion för varje "Visa Skolor"-knapp 
       relatedSchools.addEventListener("click", () => {
-        tomDiv.innerHTML = "";
+        tomDiv.innerHTML = ""; //Tömmer div:en varje gång man trycker på knappen - får bara ut informationen en gång.
         schools.forEach((school) => {
           let relatedSchoolList = document.createElement("p");
           relatedSchoolList.innerHTML = "";
           for (let i = 0; i < school.programmes.length; i++) {
-            for (let j = 0; j < student.hobbies.length; j++) {
+            for (let j = 0; j < elev.hobbies.length; j++) {
               for (let k = 0; k < school.activities.length; k++) {
                 if (
-                  student.programme === school.programmes[i] &&
-                  student.hobbies[j] === school.activities[k]
+                    elev.programme === school.programmes[i] &&
+                    elev.hobbies[j] === school.activities[k]
                 ) {
                   relatedSchoolList.innerHTML = `<div>${school.name}</div>`;
                   tomDiv.appendChild(relatedSchoolList);
@@ -85,6 +86,12 @@ async function fetchInfo() {
           }
         });
       });
+    };
+    
+
+    //Skapar p-taggar för varje utfiltrerad elev
+    filter.forEach((student) => {
+        createStudent(student) //Funktion som skapar elever och tillhörande knappfunktioner för att visa matchande skolor 
     });
 
     //Knapp för att sortera filtrerad lista i åldersordning med yngst först
@@ -98,40 +105,7 @@ async function fetchInfo() {
 
       //Skriver ut eleverna igen men i sorterad ordning
       filter.forEach((student) => {
-        //console.log(student);
-        let eachStudent = document.createElement("p");
-        eachStudent.textContent = `${student.firstName} ${student.lastName}, ${student.age}`;
-        filteredStudentList.appendChild(eachStudent);
-
-        //Lägger till en knapp per elev i listan
-        let relatedSchools = document.createElement("button");
-        relatedSchools.textContent = "Visa skolor";
-        eachStudent.appendChild(relatedSchools);
-
-        let tomDiv = document.createElement("div");
-        tomDiv.innerHTML = "";
-        eachStudent.appendChild(tomDiv);
-
-        relatedSchools.addEventListener("click", () => {
-          tomDiv.innerHTML = "";
-          schools.forEach((school) => {
-            let relatedSchoolList = document.createElement("p");
-            relatedSchoolList.innerHTML = "";
-            for (let i = 0; i < school.programmes.length; i++) {
-              for (let j = 0; j < student.hobbies.length; j++) {
-                for (let k = 0; k < school.activities.length; k++) {
-                  if (
-                    student.programme === school.programmes[i] &&
-                    student.hobbies[j] === school.activities[k]
-                  ) {
-                    relatedSchoolList.innerHTML = `<div>${school.name}</div>`;
-                    tomDiv.appendChild(relatedSchoolList);
-                  }
-                }
-              }
-            }
-          });
-        });
+        createStudent(student) //Funktion som skapar elever och tillhörande knappfunktioner för att visa matchande skolor
       });
     });
 
@@ -153,40 +127,7 @@ async function fetchInfo() {
 
       //Skriver ut eleverna igen men i sorterad ordning
       filter.forEach((student) => {
-        //console.log(student);
-        let eachStudent = document.createElement("p");
-        eachStudent.textContent = `${student.firstName} ${student.lastName}, ${student.age}`;
-        filteredStudentList.appendChild(eachStudent);
-
-        //Lägger till en knapp per elev i listan
-        let relatedSchools = document.createElement("button");
-        relatedSchools.textContent = "Visa skolor";
-        eachStudent.appendChild(relatedSchools);
-
-        let tomDiv = document.createElement("div");
-        tomDiv.innerHTML = "";
-        eachStudent.appendChild(tomDiv);
-
-        relatedSchools.addEventListener("click", () => {
-          tomDiv.innerHTML = "";
-          schools.forEach((school) => {
-            let relatedSchoolList = document.createElement("p");
-            relatedSchoolList.innerHTML = "";
-            for (let i = 0; i < school.programmes.length; i++) {
-              for (let j = 0; j < student.hobbies.length; j++) {
-                for (let k = 0; k < school.activities.length; k++) {
-                  if (
-                    student.programme === school.programmes[i] &&
-                    student.hobbies[j] === school.activities[k]
-                  ) {
-                    relatedSchoolList.innerHTML = `<div>${school.name}</div>`;
-                    tomDiv.appendChild(relatedSchoolList);
-                  }
-                }
-              }
-            }
-          });
-        });
+        createStudent(student) //Funktion som skapar elever och tillhörande knappfunktioner för att visa matchande skolor
       });
     });
 
@@ -208,40 +149,7 @@ async function fetchInfo() {
 
       //Skriver ut eleverna igen men i sorterad ordning
       filter.forEach((student) => {
-        //console.log(student);
-        let eachStudent = document.createElement("p");
-        eachStudent.textContent = `${student.firstName} ${student.lastName}, ${student.age}`;
-        filteredStudentList.appendChild(eachStudent);
-
-        //Lägger till en knapp per elev i listan
-        let relatedSchools = document.createElement("button");
-        relatedSchools.textContent = "Visa skolor";
-        eachStudent.appendChild(relatedSchools);
-
-        let tomDiv = document.createElement("div");
-        tomDiv.innerHTML = "";
-        eachStudent.appendChild(tomDiv);
-
-        relatedSchools.addEventListener("click", () => {
-          tomDiv.innerHTML = "";
-          schools.forEach((school) => {
-            let relatedSchoolList = document.createElement("p");
-            relatedSchoolList.innerHTML = "";
-            for (let i = 0; i < school.programmes.length; i++) {
-              for (let j = 0; j < student.hobbies.length; j++) {
-                for (let k = 0; k < school.activities.length; k++) {
-                  if (
-                    student.programme === school.programmes[i] &&
-                    student.hobbies[j] === school.activities[k]
-                  ) {
-                    relatedSchoolList.innerHTML = `<div>${school.name}</div>`;
-                    tomDiv.appendChild(relatedSchoolList);
-                  }
-                }
-              }
-            }
-          });
-        });
+        createStudent(student) //Funktion som skapar elever och tillhörande knappfunktioner för att visa matchande skolor
       });
     });
   });

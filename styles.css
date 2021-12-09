@@ -16,7 +16,6 @@ h1 {
 }
 
 button {
-    /*margin-left: 0.5rem; */
     background:linear-gradient(to bottom, #ffffff 5%, #f5ebff 100%);
 	background-color:#ffffff;
 	border-radius:15px;
@@ -24,7 +23,6 @@ button {
 	display:inline-block;
 	cursor:pointer;
 	color:#6b426b;
-	/* font-family:Verdana; */
 	font-size:12px;
 	padding:7px 14px;
 	text-decoration:none;
@@ -43,37 +41,6 @@ button:active {
 #filterStudentList button {
     margin-left: 0.5rem;
 }
-
-/*
-#filter {
-    margin: 10px;
-}
-
-#filter input[type="radio"] {
-    opacity: 0;
-    position: fixed;
-    width: 0;
-}
-
-#filter label {
-    display: inline-block;
-    background-color: #ddd;
-    padding: 10px 20px;
-    font-family: sans-serif, Arial;
-    font-size: 16px;
-    border: 2px solid #8a6a8a;
-    border-radius: 4px;
-}
-
-#filter label:hover {
-    background-color: #f5ebff;
-}
-
-#filter input[type="radio"]:checked + label {
-    background-color: #bfb;
-    border-color: #4c4;
-}
-*/
 
 #filterStudentList div p {
 font-size: 90%;
